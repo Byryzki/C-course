@@ -9,7 +9,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/luvut_2",
+            "program": "${workspaceFolder}/${fileBasenameNoExtension}",
             "args": ["151", "172", "5", "3", "4"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

@@ -11,12 +11,16 @@ int main(int argc, char **argv)
     int rowlen = b-a+1;
     int collen = d-c+1;
 
-    int row[rowlen];
-    int col[collen];
+    int row[100];
+    int col[100];
 
-    int LargestInt = 0;
+    int temp;
+    int kymmen;
 
     int iter = 0;
+    int iter2 = 0;
+
+
     while(iter <= rowlen)
     {
         row[iter] = a+iter;
@@ -30,7 +34,7 @@ int main(int argc, char **argv)
         iter++;
     }
 
-    int kymmen = 0;
+    kymmen = 0;
     if(row[rowlen-1] > col[collen-1])
     {
         int temp = row[rowlen-1]*col[collen-1];
@@ -42,7 +46,7 @@ int main(int argc, char **argv)
     }
     else
     {
-        int temp = col[collen-1]*row[rowlen-1];
+        temp = col[collen-1]*row[rowlen-1];
         while(temp != 0)
         {
             temp = temp/10;
@@ -61,14 +65,13 @@ int main(int argc, char **argv)
     {
         printf("%*.d", kymmen+1, col[iter]);
 
-        int iter2 = 0;
+        iter2 = 0;
         for(; iter2 < rowlen; iter2++)
         {
             printf("%*.d", kymmen+1, col[iter]*row[iter2]);
         }
         printf("\n");
     }
-    printf("\n");
 
     return 0;
 }

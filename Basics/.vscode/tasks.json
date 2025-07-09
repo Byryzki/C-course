@@ -1,25 +1,22 @@
 {
+    "version": "2.0.0",
     "tasks": [
         {
-            "type": "cppbuild",
-            "label": "C/C++: gcc build active file",
-            "command": "/usr/bin/gcc",
+            "label": "build",
+            "type": "shell",
+            "command": "gcc",
             "args": [
-                "-fdiagnostics-color=always",
-                "-g",
-                "${file}",
+                "-g", // Include debug symbols
+                "./${fileBasename}", // Compile the currently open file
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "./a.out" // Output binary
             ],
-            "options": {
-                "cwd": "${fileDirname}"
+            "group": {
+                "kind": "build",
+                "isDefault": true
             },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": "build",
-            "detail": "compiler: /usr/bin/gcc"
+            "problemMatcher": ["$gcc"],
+            "detail": "Compile C program using GCC inside WSL"
         }
-    ],
-    "version": "2.0.0"
+    ]
 }

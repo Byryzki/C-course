@@ -1,26 +1,26 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
         {
-            "name": "(gdb) Launch",
+            "name": "WSL (gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/${fileBasenameNoExtension}",
-            "args": ["1", "10", "11", "20"],
+            "program": "${workspaceFolder}/a.out",
+            "args": [
+                "0.2",
+                "-9.9",
+                "0.2",
+                "-9.9",
+                "3.0",
+                "0.2",
+                "-9.9"
+            ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
-            "environment": [
-                                {
-                                    "name": "ASAN_OPTIONS",
-                                    "value": "detect_leaks=0"
-                                }
-                            ],
+            "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
@@ -32,8 +32,16 @@
                     "text": "-gdb-set disassembly-flavor intel",
                     "ignoreFailures": true
                 }
-            ]
-        }
-
+            ],
+            "preLaunchTask": "build", // Optional: Build your code before debugging
+            "pipeTransport": {
+                "pipeCwd": "${workspaceFolder}",
+                "pipeProgram": "wsl",
+                "pipeArgs": [],
+                "debuggerPath": "/usr/bin/gdb",
+                "quoteArgs": true
+            }
+            
+        },
     ]
 }

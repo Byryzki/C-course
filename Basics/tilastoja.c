@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 double smallest(int argc, char **array)
 {
@@ -33,29 +34,31 @@ void uniques(int argc, char **array)
     int iter2 = 0;
     int freq = 0;
     int first = 1;
-    int freqs[100] = {0};
+    char copy[100];
+    int multiple = 0;
+
+    for(int i = 1; i < argc; i++)
+    {
+        copy[i-1] = atoi(array[i]);
+    }
 
     for(iter = 1; iter < argc; iter++)
     {
         for(iter2 = 1; iter2 < argc; iter2++)
         {
-            if(atof(array[iter2]) == atof(array[iter]))
+            if(atoi(array[iter2]) == atoi(array[iter]) && iter2 != iter)
             {
-                freq++;
+                multiple = 1;
             }
         }
-        freqs[iter-1] = freq;
-        freq = 0;
-    }
-
-    for(iter = 0; iter < argc; iter++)
-    {
-        if(freqs[iter] == 1)
+        if(!multiple)
         {
             if(first){printf("Ainutlaatuiset:");}
-            printf(" %.6f", atof(array[iter+1]));
-            first = 0;   
+            printf(" %.6f", atof(array[iter]));
+            first = 0;  
         }
+
+        multiple = 0;
     }
 
     if(!first){printf("\n");}

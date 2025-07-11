@@ -32,21 +32,14 @@ void uniques(int argc, char **array)
 {
     int iter = 0;
     int iter2 = 0;
-    int freq = 0;
     int first = 1;
-    char copy[100];
     int multiple = 0;
-
-    for(int i = 1; i < argc; i++)
-    {
-        copy[i-1] = atoi(array[i]);
-    }
 
     for(iter = 1; iter < argc; iter++)
     {
         for(iter2 = 1; iter2 < argc; iter2++)
         {
-            if(atoi(array[iter2]) == atoi(array[iter]) && iter2 != iter)
+            if(atof(array[iter2]) == atof(array[iter]) && iter2 != iter)
             {
                 multiple = 1;
             }

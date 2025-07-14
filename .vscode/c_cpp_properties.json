@@ -3,7 +3,9 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}\\**",
+                "C:\\Users\\laine\\C-course\\Basics\\geometria\\src\\**",
+                "C:\\Users\\laine\\C-course\\Basics\\geometria\\include\\**"
             ],
             "defines": [
                 "_DEBUG",

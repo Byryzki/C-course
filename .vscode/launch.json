@@ -6,7 +6,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
-            "args": ["racecar", "SAIPPUAkiviKauppias", "kivi", "racecar", "SAIPPUAkiviKauppias", "kivi","racecar", "SAIPPUAkiviKauppias", "kivi"],
+            "args": ["1.5", "2.75", "3.14159"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

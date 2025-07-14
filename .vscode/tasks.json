@@ -8,6 +8,8 @@
             "args": [
                 "-g",
                 "${file}",
+                "${workspaceFolder}\\Basics\\geometria\\src\\geometria.c",
+                "-I\"${workspaceFolder}\\Basics\\geometria\\include\"",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
@@ -15,16 +17,17 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "detail": "Compile C file with MinGW (gcc)"
+            "detail": "Compile C file with MinGW (gcc)",
         },
         {
             "type": "cppbuild",
-            "label": "C/C++: gcc.exe build active file",
+            "label": "C\\C++: gcc.exe build active file",
             "command": "C:\\msys64\\mingw64\\bin\\gcc.exe",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
+                "-I\"${workspaceFolder}\\Basics\\include\"",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],

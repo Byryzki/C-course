@@ -6,7 +6,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
-            "args": ["1.5", "2.75", "3.14159"],
+            "args": ["01001"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

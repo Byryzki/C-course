@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "geometria.h": "c"
+        "geometria.h": "c",
+        "cmath": "c"
     }
 }

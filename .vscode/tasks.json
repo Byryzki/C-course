@@ -8,8 +8,7 @@
             "args": [
                 "-g",
                 "${file}",
-                "${workspaceFolder}\\Basics\\geometria\\src\\geometria.c",
-                "-I\"${workspaceFolder}\\Basics\\geometria\\include\"",
+                "-I\"${workspaceFolder}\\bits_pointers_structs\\bitit\\include\"",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
@@ -27,7 +26,7 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
-                "-I\"${workspaceFolder}\\Basics\\include\"",
+                "-I\"${workspaceFolder}\\bits_pointers_structs\\bitit\\include\"",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],

@@ -1,7 +1,7 @@
 {
     "configurations": [
         {
-            "name": "Win32",
+            "name": "Win64",
             "includePath": [
                 "${workspaceFolder}\\**",
                 "C:\\Users\\laine\\C-course\\Basics\\geometria\\src\\**",
@@ -14,7 +14,8 @@
             ],
             "cStandard": "c11",
             "cppStandard": "gnu++17",
-            "intelliSenseMode": "windows-gcc-x64"
+            "intelliSenseMode": "windows-gcc-x64",
+            "compilerPath": "C:\\msys64\\mingw64\\bin\\gcc.exe"
         }
     ],
     "version": 4

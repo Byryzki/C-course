@@ -1,0 +1,22 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-g", // Include debug symbols
+                "./${fileBasename}", // Compile the currently open file
+                "-o",
+                "./a.out" // Output binary
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Compile C program using GCC inside WSL"
+        }
+    ]
+}

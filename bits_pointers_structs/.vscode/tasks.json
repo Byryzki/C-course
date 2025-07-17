@@ -1,0 +1,23 @@
+{
+    "version": "2.0.0",
+    "tasks":
+	[
+        {
+            "label": "Build with GCC",
+            "type": "shell",
+            "command": "/usr/bin/gcc",
+            "args": [
+                "-g",
+                "${file}",
+				"-I${workspaceFolder}/bitit/include",
+                "-o",
+                "${fileDirname}/a.out",
+				"-lm"
+            ],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+	]
+}

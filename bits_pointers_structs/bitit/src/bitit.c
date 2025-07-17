@@ -116,7 +116,10 @@ void longBitit(long int x)
     printf("%d\n", ones);
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 void kaannaScharBitit(signed char *x)
 {
     char originals[8] = {0};
@@ -139,7 +142,11 @@ void kaannaScharBitit(signed char *x)
         left--;
     }
 
+<<<<<<< HEAD
     for(right=0; right<8; right++){revval |= (result[right] & 1) << 7-right;} /*construct char from bit array*/
+=======
+    for(right=0; right<8; right++){revval |= (result[right] & 1) << (7-right);} /*construct char from bit array*/
+>>>>>>> master
 
     for(right=0; right<8; right++){printf("%d", originals[right]);} printf("\n");
     printf("%d\n", revval);
@@ -169,7 +176,11 @@ void kaannaShortBitit(short *x)
         left--;
     }
 
+<<<<<<< HEAD
     for(right=0; right<16; right++){revval |= (result[right] & 1) << 15-right;} /*construct char from bit array*/
+=======
+    for(right=0; right<16; right++){revval |= (result[right] & 1) << (15-right);} /*construct char from bit array*/
+>>>>>>> master
 
     for(right=0; right<16; right++){printf("%d", originals[right]);} printf("\n");
     printf("%d\n", revval);
@@ -199,7 +210,11 @@ void kaannaIntBitit(int *x)
         left--;
     }
 
+<<<<<<< HEAD
     for(right=0; right<32; right++){revval |= (result[right] & 1) << 31-right;} /*construct char from bit array*/
+=======
+    for(right=0; right<32; right++){revval |= (result[right] & 1) << (31-right);} /*construct char from bit array*/
+>>>>>>> master
 
     for(right=0; right<32; right++){printf("%d", originals[right]);} printf("\n");
     printf("%d\n", revval);
@@ -212,6 +227,7 @@ void kaannaLongBitit(long *x)
     char originals[64] = {0};
     char result[64] = {0};
     long revval = 0;
+<<<<<<< HEAD
     unsigned int mask = 0;
     int right = 0;
     int left = 63;
@@ -221,6 +237,17 @@ void kaannaLongBitit(long *x)
     while(right < 64) /*construct bit array from char*/
     {
         mask = 1 << right;
+=======
+    unsigned long mask = 0;
+    long right = 0;
+    long left = 63;
+
+    printf("%ld\n", *x);
+
+    while(right < 64) /*construct bit array from char*/
+    {
+        mask = 1UL << right;
+>>>>>>> master
         originals[left] = (*x & mask) >> right;
         result[right] = (*x & mask) >> right;
 
@@ -229,17 +256,41 @@ void kaannaLongBitit(long *x)
         left--;
     }
 
+<<<<<<< HEAD
     for(right=0; right<64; right++){revval |= (result[right] & 1) << 63-right;} /*construct char from bit array*/
 
     for(right=0; right<64; right++){printf("%d", originals[right]);} printf("\n");
     printf("%d\n", revval);
     for(right=0; right<64; right++){printf("%d", result[right]);} printf("\n");
     printf("\n");
+=======
+    if(result[0]==1)
+    {
+        for(right=1; right<64; right++)
+        {
+            if(result[right] == 0){revval = revval + pow(2,63-right);}
+        } /*construct char from bit array*/ 
+        revval = -1*revval;
+    }
+    else
+    {
+        for(right=1; right<64; right++)
+        {
+            if(result[right] == 1){revval = revval + pow(2,63-right);}
+        } /*construct char from bit array*/ 
+        revval--;
+    }
+
+    for(right=0; right<64; right++){printf("%d", originals[right]);} printf("\n");
+    printf("%ld\n", revval);
+    for(right=0; right<64; right++){printf("%d", result[right]);} printf("\n");
+>>>>>>> master
 }
 
 
 int main(int argc, char **argv)
 {
+<<<<<<< HEAD
     int i = 0;
     int num = 0;
     char bitit[64] = {0};
@@ -248,6 +299,15 @@ int main(int argc, char **argv)
     short int toka = 0;
     int kolmas = 0;
     long neljas = 0;
+=======
+    long i = 0;
+    long num = 0;
+    char bitit[64] = {0};
+    unsigned long mask = 1UL << 63;
+    signed char eka = 0;
+    short int toka = 0;
+    int kolmas = 0;
+>>>>>>> master
 
     for(i = (argv[1][0] == '-') ? 1:0; i < strlen(argv[1]); i++)
     {
@@ -255,13 +315,18 @@ int main(int argc, char **argv)
     }
     if(argv[1][0] == '-'){num = -1*num;}
 
+<<<<<<< HEAD
     for(i = 0; i < 32; i++)
+=======
+    for(i = 0; i < 64; i++)
+>>>>>>> master
     {
         bitit[i] = (num & mask) ? 1 : 0;
         mask >>= 1;
     }
     
     for(i = 0; i < 8; i++){eka |= (bitit[56+i] & 1) << (7-i);}
+<<<<<<< HEAD
     //scharBitit(eka);
     kaannaScharBitit(&eka);
 
@@ -276,6 +341,21 @@ int main(int argc, char **argv)
     for(i = 0; i < 64; i++){neljas |= (bitit[i] & 1) << (64-i);}
     //longBitit(kolmas);
     kaannaLongBitit(&neljas);
+=======
+    ScharBitit(eka);
+    kaannaScharBitit(&eka);
+
+    for(i = 0; i < 16; i++){toka |= (bitit[48+i] & 1) << (15-i);}
+    ShortBitit(toka);
+    kaannaShortBitit(&toka);
+
+    for(i = 0; i < 32; i++){kolmas |= (bitit[32+i] & 1) << (31-i);}
+    IntBitit(kolmas);
+    kaannaIntBitit(&kolmas);
+
+    kaannaLongBitit(num);
+    kaannaLongBitit(&num);
+>>>>>>> master
 
     return 0;
 }

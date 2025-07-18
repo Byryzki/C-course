@@ -1,21 +1,18 @@
 {
     "configurations": [
         {
-            "name": "Win64",
+            "name": "WSL Debian",
             "includePath": [
-                "${workspaceFolder}\\**",
-                "C:\\Users\\laine\\C-course\\Basics\\geometria\\src\\**",
-                "C:\\Users\\laine\\C-course\\Basics\\geometria\\include\\**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/bits_pointers_structs/bitit/include/**",
+                "/usr/include/**",
+                "/usr/local/include/**"
             ],
-            "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
-            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
             "cStandard": "c11",
-            "cppStandard": "gnu++17",
-            "intelliSenseMode": "windows-gcc-x64",
-            "compilerPath": "C:\\msys64\\mingw64\\bin\\gcc.exe"
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-gcc-x64"
         }
     ],
     "version": 4

@@ -42,9 +42,9 @@ void utf8_koodaa(unsigned int c, unsigned char utf8[])
     utf8[2] = '\0';
 
     for(i=0; i<5; i++){
-      utf8[0] |= (bitit[32-11+i] & 1) << (4-i);}
+      utf8[0] |= (bitit[32-11+i] & 1) << (4-i); k = bitit[32-12+i];}
     for(i=0; i<6; i++){
-      utf8[1] |= (bitit[32-6+i] & 1) << (5-i);}
+      utf8[1] |= (bitit[32-6+i] & 1) << (5-i); k = bitit[32-12+i];}
   }
   else if(bytes == 3)
   {
@@ -53,12 +53,12 @@ void utf8_koodaa(unsigned int c, unsigned char utf8[])
     utf8[2] = 128; /*10000000*/
     utf8[3] = '\0';
 
-    for(i=0; i<5; i++){
-      utf8[0] |= (bitit[32-20+i] & 1) << (4-i);}
+    for(i=0; i<4; i++){
+      utf8[0] |= (bitit[32-16+i] & 1) << (3-i); k = bitit[32-16+i];}
     for(i=0; i<6; i++){
-      utf8[1] |= (bitit[32-14+i] & 1) << (5-i);}
+      utf8[1] |= (bitit[32-12+i] & 1) << (5-i); k = bitit[32-12+i];}
     for(i=0; i<6; i++){
-      utf8[1] |= (bitit[32-6+i] & 1) << (5-i);}
+      utf8[2] |= (bitit[32-6+i] & 1) << (5-i); k = bitit[32-6+i];}
   }
   else if(bytes == 4)
   {
@@ -68,14 +68,14 @@ void utf8_koodaa(unsigned int c, unsigned char utf8[])
     utf8[3] = 128; /*10000000*/
     utf8[4] = '\0';
 
-    for(i=0; i<5; i++){
-      utf8[0] |= (bitit[32-27+i] & 1) << (4-i);}
+    for(i=0; i<3; i++){
+      utf8[0] |= (bitit[32-27+i] & 1) << (2-i); k = bitit[32-12+i];}
     for(i=0; i<6; i++){
-      utf8[1] |= (bitit[32-22+i] & 1) << (5-i);}
+      utf8[1] |= (bitit[32-16+i] & 1) << (5-i); k = bitit[32-12+i];}
     for(i=0; i<6; i++){
-      utf8[1] |= (bitit[32-14+i] & 1) << (5-i);}
+      utf8[2] |= (bitit[32-12+i] & 1) << (5-i); k = bitit[32-12+i];}
     for(i=0; i<6; i++){
-      utf8[1] |= (bitit[32-6+i] & 1) << (5-i);}
+      utf8[3] |= (bitit[32-6+i] & 1) << (5-i); k = bitit[32-12+i];}
   }
   
 }

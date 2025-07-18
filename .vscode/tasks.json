@@ -8,6 +8,7 @@
             "args": [
                 "-g",                           // Debug symbols
                 "${file}", // Path to your main source file
+                "${workspaceFolder}/bits_pointers_structs/bitit/src/bitit.c",
                 "-I${workspaceFolder}/bits_pointers_structs/bitit/include", // 👈 Add include dir
                 "-o",
                 "${workspaceFolder}/bits_pointers_structs/bitit/a.out",

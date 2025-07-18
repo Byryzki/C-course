@@ -27,19 +27,30 @@ int main(int argc, char **argv)
     }
     
     for(i = 0; i < 8; i++){eka |= (bitit[56+i] & 1) << (7-i);}
-    scharBitit(eka);
-    kaannaScharBitit(&eka);
 
     for(i = 0; i < 16; i++){toka |= (bitit[48+i] & 1) << (15-i);}
-    shortBitit(toka);
-    kaannaShortBitit(&toka);
 
     for(i = 0; i < 32; i++){kolmas |= (bitit[32+i] & 1) << (31-i);}
-    intBitit(kolmas);
-    kaannaIntBitit(&kolmas);
 
-    longBitit(num);
-    kaannaLongBitit(&num);
+    long int lx = num;  // Each test uses a different value for NUMBER.
+    signed char cx = lx;
+    short sx = lx;
+    int ix = lx;
+    printScharBits(cx);
+    kaannaScharBitit(&cx); // Give the address of cx as the pointer parameter value.
+    printScharBits(cx);
+    printf("\n");
+    printShortBits(sx);
+    kaannaShortBitit(&sx); // Address of sx --> pointer to sx.
+    printShortBits(sx);
+    printf("\n");
+    printIntBits(ix);
+    kaannaIntBitit(&ix);   // Address of ix --> pointer to sx.
+    printIntBits(ix);
+    printf("\n");
+    printLongBits(lx);
+    kaannaLongBitit(&lx);  // Address of lx --> pointer to lx.
+    printLongBits(lx);
 
     return 0;
 }

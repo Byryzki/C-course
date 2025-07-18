@@ -5,12 +5,12 @@
             "name": "WSL Debug with Build",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bits_pointers_structs/bitit/a.out", // Updated binary path
+            "program": "${workspaceFolder}/bits_pointers_structs/utf8/a.out", // Updated binary path
             "args": [
                 "2015"
             ],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/bits_pointers_structs/bitit",
+            "cwd": "${workspaceFolder}/bits_pointers_structs/utf8",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",

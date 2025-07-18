@@ -4,7 +4,7 @@
             "name": "WSL Debian",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/bits_pointers_structs/bitit/include/**",
+                "${workspaceFolder}/bits_pointers_structs/utf8/include/**",
                 "/usr/include/**",
                 "/usr/local/include/**"
             ],

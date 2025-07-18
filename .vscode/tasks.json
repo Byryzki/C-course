@@ -8,10 +8,10 @@
             "args": [
                 "-g",                           // Debug symbols
                 "${file}", // Path to your main source file
-                "${workspaceFolder}/bits_pointers_structs/bitit/src/bitit.c",
-                "-I${workspaceFolder}/bits_pointers_structs/bitit/include", // 👈 Add include dir
+                "${workspaceFolder}/bits_pointers_structs/utf8/src/utf8.c",
+                "-I${workspaceFolder}/bits_pointers_structs/utf8/include", // 👈 Add include dir
                 "-o",
-                "${workspaceFolder}/bits_pointers_structs/bitit/a.out",
+                "${workspaceFolder}/bits_pointers_structs/utf8/a.out",
                 "-lm"
             ],
             "group": {

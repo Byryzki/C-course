@@ -1,71 +1,75 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "kolmijako.h"
+#include <string.h>
 
-IntPari kolmijako(unsigned int n, int t[], int pivot1, int pivot2, int *p1, int *p2)
+void muunna(int *a, int *b)
+{
+    int tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
+
+IntPari kolmijako(unsigned int n, int t[], int pivot1, int pivot2, int *p1, int *p2)    /*itse algoritmi O(n) */
 {
     int i;
-    int less1 = 0;
-    int less2 = 0;
-    int tmp;
     IntPari ip;
 
-    if(t[pivot1] > t[pivot2])
+    int y = 0;
+    int yla[1000] = {0};
+    int k = 0;
+    int keski[1000] = {0};
+    int a = 0;
+    int ala[1000] = {0};
+
+    int tmpa;
+    int tmpy;
+
+    int low = (pivot1 < pivot2) ? pivot1 : pivot2;  /*pivot indexit arvojarjestykseen*/
+    int high = (pivot1 > pivot2) ? pivot1 : pivot2;
+
+    if(t[low] > t[high]){muunna(&t[low], &t[high]);}  /*pivot arvojarjestykseen*/
+
+    if(n == 2)  /*only 2 values to sort*/
     {
-        tmp = pivot1;
-        pivot1 = pivot2;
-        pivot2 = tmp;
+        t[pivot1] = (t[pivot1] < t[pivot2]) ? t[pivot1]:t[pivot2]; ala[pivot1] = t[pivot1];
+        t[pivot2] = (t[pivot1] > t[pivot2]) ? t[pivot1]:t[pivot2]; yla[pivot1] = t[pivot2];
+
+        printf("%d %d", t[pivot1], t[pivot2]); printf("\n");
+
+        ip.x = low;
+        ip.y = high;
+        return ip;
     }
 
-    for(i=0; i<n; i++)
+    tmpa = t[low];
+    tmpy = t[high];
+
+    for(i=0; i<n; i++)  /*ryhmittely*/
     {
-        if(t[i] < t[pivot1])
-        {
-            tmp = t[i];
-            t[i] = t[pivot1];
-            t[pivot1] = tmp;
-
-            if(pivot1 == less1){pivot1 = i;}
-            if(pivot2 == less1){pivot2 = i;}
-
-            less1 = i;
-        }
-    }
-    less1++;
-
-    tmp = t[less1];
-    t[less1] = t[pivot1];
-    t[pivot1] = tmp;
-
-    if(pivot2 == less1)
-    {
-        /*?*/
+        if(t[i] < t[low]){ala[a] = t[i]; a++;}
+        else if(t[i] > t[low] && t[i] < t[high]){keski[k] = t[i]; k++;}
+        else if(t[i] > t[high]){yla[y] = t[i]; y++;}
     }
 
-    less2 = less1 + 1;
-    for(i=less2; i<n; i++)
-    {
-        if(t[i] < t[pivot2])
-        {
-            tmp = t[less2];
-            t[less2] = t[pivot2];
-            t[pivot2] = tmp;
+    i=0;
+    while(i<a){t[i] = ala[i]; i++;}
+    low = i;
+    t[i] = tmpa;
+    i++;
+    while(i-a-1<k){t[i] = keski[i-a-1]; i++;}
+    high = i;
+    t[i] = tmpy;
+    i++;
+    while(i-a-k-2<y){t[i] = yla[i-a-k-2]; i++;}
 
-            less2 = i;
-        }
+    for(i=0; i<n; i++){printf("%d ", t[i]);} printf("\n");
 
-        if(pivot2 == less2){pivot2 = i;}
-    }
-    less2++;
+    *p1 = low;
+    *p2 = high;
 
-    tmp = t[less2];
-    t[less2] = t[pivot2];
-    t[pivot2] = tmp;
-
-    *p1 = less1;
-    *p2 = less2;
-
-    ip.x = less1;
-    ip.y = less2;
+    ip.x = low;
+    ip.y = high;
 
     return ip;
 }

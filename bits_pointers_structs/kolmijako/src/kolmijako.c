@@ -35,8 +35,6 @@ IntPari kolmijako(unsigned int n, int t[], int pivot1, int pivot2, int *p1, int 
         t[pivot1] = (t[pivot1] < t[pivot2]) ? t[pivot1]:t[pivot2]; ala[pivot1] = t[pivot1];
         t[pivot2] = (t[pivot1] > t[pivot2]) ? t[pivot1]:t[pivot2]; yla[pivot1] = t[pivot2];
 
-        printf("%d %d", t[pivot1], t[pivot2]); printf("\n");
-
         ip.x = low;
         ip.y = high;
         return ip;

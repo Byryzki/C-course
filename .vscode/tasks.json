@@ -7,12 +7,11 @@
             "command": "/usr/bin/gcc",
             "args": [
                 "-g",                           // Debug symbols
-                "${workspaceFolder}/bits_pointers_structs/kolmijako/src/main.c", // Path to your main source file
-                "${workspaceFolder}/bits_pointers_structs/kolmijako/src/pikalaj.c",
-                "${workspaceFolder}/bits_pointers_structs/kolmijako/src/kolmijako.c",
-                "-I${workspaceFolder}/bits_pointers_structs/kolmijako/include", // 👈 Add include dir
+                "${workspaceFolder}/bits_pointers_structs/kuukaudet/src/main.c", // Path to your main source file
+                "${workspaceFolder}/bits_pointers_structs/kuukaudet/src/kuukaudet.c",
+                "-I${workspaceFolder}/bits_pointers_structs/kuukaudet/include", // 👈 Add include dir
                 "-o",
-                "${workspaceFolder}/bits_pointers_structs/kolmijako/a.out",
+                "${workspaceFolder}/bits_pointers_structs/kuukaudet/a.out",
                 "-lm"
             ],
             "group": {

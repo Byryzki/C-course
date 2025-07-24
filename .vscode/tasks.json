@@ -7,11 +7,11 @@
             "command": "/usr/bin/gcc",
             "args": [
                 "-g",                           // Debug symbols
-                "${workspaceFolder}/memory/fibonacci/src/main.c", // Path to your main source file
-                "${workspaceFolder}/memory/fibonacci/src/fibonacci.c",
-                "-I${workspaceFolder}/memory/fibonacci/include", // 👈 Add include dir
+                "${workspaceFolder}/memory/mjonot/src/main.c", // Path to your main source file
+                "${workspaceFolder}/memory/mjonot/src/mjonot.c",
+                "-I${workspaceFolder}/memory/mjonot/include", // 👈 Add include dir
                 "-o",
-                "${workspaceFolder}/memory/fibonacci/a.out",
+                "${workspaceFolder}/memory/mjonot/a.out",
                 "-lm"
             ],
             "group": {

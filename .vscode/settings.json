@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "geometria.h": "c",
-        "cmath": "c"
+        "cmath": "c",
+        "math.h": "c"
     }
 }

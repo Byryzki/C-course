@@ -7,11 +7,11 @@
             "command": "/usr/bin/gcc",
             "args": [
                 "-g",                           // Debug symbols
-                "${workspaceFolder}/bits_pointers_structs/tetris/src/main.c", // Path to your main source file
-                "${workspaceFolder}/bits_pointers_structs/tetris/src/tetris.c",
-                "-I${workspaceFolder}/bits_pointers_structs/tetris/include", // 👈 Add include dir
+                "${workspaceFolder}/bits_pointers_structs/piste3d/src/main.c", // Path to your main source file
+                "${workspaceFolder}/bits_pointers_structs/piste3d/src/piste3d.c",
+                "-I${workspaceFolder}/bits_pointers_structs/piste3d/include", // 👈 Add include dir
                 "-o",
-                "${workspaceFolder}/bits_pointers_structs/tetris/a.out",
+                "${workspaceFolder}/bits_pointers_structs/piste3d/a.out",
                 "-lm"
             ],
             "group": {

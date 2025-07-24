@@ -7,7 +7,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/memory/mjonot/a.out", // Updated binary path
             "args": [
-                "8", "2", "1"
+                "yksi", "kaksi", "seitsemäntoista"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/memory/mjonot",

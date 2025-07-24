@@ -7,11 +7,11 @@
             "command": "/usr/bin/gcc",
             "args": [
                 "-g",                           // Debug symbols
-                "${workspaceFolder}/bits_pointers_structs/piste3d/src/main.c", // Path to your main source file
-                "${workspaceFolder}/bits_pointers_structs/piste3d/src/piste3d.c",
-                "-I${workspaceFolder}/bits_pointers_structs/piste3d/include", // 👈 Add include dir
+                "${workspaceFolder}/memory/fibonacci/src/main.c", // Path to your main source file
+                "${workspaceFolder}/memory/fibonacci/src/fibonacci.c",
+                "-I${workspaceFolder}/memory/fibonacci/include", // 👈 Add include dir
                 "-o",
-                "${workspaceFolder}/bits_pointers_structs/piste3d/a.out",
+                "${workspaceFolder}/memory/fibonacci/a.out",
                 "-lm"
             ],
             "group": {

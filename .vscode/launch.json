@@ -5,12 +5,12 @@
             "name": "WSL Debug with Build",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bits_pointers_structs/piste3d/a.out", // Updated binary path
+            "program": "${workspaceFolder}/memory/fibonacci/a.out", // Updated binary path
             "args": [
                 "8", "2", "1"
             ],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/bits_pointers_structs/piste3d",
+            "cwd": "${workspaceFolder}/memory/fibonacci",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",

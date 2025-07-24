@@ -4,7 +4,7 @@
             "name": "WSL Debian",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/bits_pointers_structs/piste3d/include/**",
+                "${workspaceFolder}/memory/fibonacci/include/**",
                 "/usr/include/**",
                 "/usr/local/include/**"
             ],

@@ -7,11 +7,11 @@
             "command": "/usr/bin/gcc",
             "args": [
                 "-g",                           // Debug symbols
-                "${workspaceFolder}/memory/mjonot/src/main.c", // Path to your main source file
-                "${workspaceFolder}/memory/mjonot/src/mjonot.c",
-                "-I${workspaceFolder}/memory/mjonot/include", // 👈 Add include dir
+                "${workspaceFolder}/memory/rectangle/src/main.c", // Path to your main source file
+                "${workspaceFolder}/memory/rectangle/src/rectangle.c",
+                "-I${workspaceFolder}/memory/rectangle/include", // 👈 Add include dir
                 "-o",
-                "${workspaceFolder}/memory/mjonot/a.out",
+                "${workspaceFolder}/memory/rectangle/a.out",
                 "-lm"
             ],
             "group": {

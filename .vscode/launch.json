@@ -5,12 +5,12 @@
             "name": "WSL Debug with Build",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/memory/mjonot/a.out", // Updated binary path
+            "program": "${workspaceFolder}/memory/rectangle/a.out", // Updated binary path
             "args": [
                 "yksi", "kaksi", "seitsemäntoista"
             ],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/memory/mjonot",
+            "cwd": "${workspaceFolder}/memory/rectangle",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",

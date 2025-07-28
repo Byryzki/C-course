@@ -5,12 +5,12 @@
             "name": "WSL Debug with Build",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/memory/kertotaulu/a.out", // Updated binary path
+            "program": "${workspaceFolder}/memory/fibonacci/a.out", // Updated binary path
             "args": [
-                "2", "9", "11", "17"
+                "15"
             ],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/memory/kertotaulu",
+            "cwd": "${workspaceFolder}/memory/fibonacci",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",

@@ -1,16 +1,11 @@
 #include <stdio.h>
-#include <stdlib.h> /* Need the function "free" for releasing memory. */
+#include <stdlib.h>
 #include "fibonacci.h"
 
-int main(void)
+int main(int argc, char *argv[])
 {
-  unsigned int *fibonacci = fib_jono(15); /* The 15 first Fibonacci numbers. */
-  int i = 0;
-  for(i = 0; i < 15; ++i)
-  {
-    printf(" %u", fibonacci[i]);
-  }
-  printf("\n");
-  free(fibonacci); /* Release the dynamically allocated memory. */
+  char *fibonacci = fib_jono_mj(atoi(argv[1]));
+  printf("%s\n", fibonacci);
+  free(fibonacci);
   return 0;
 }

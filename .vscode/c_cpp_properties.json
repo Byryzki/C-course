@@ -4,7 +4,7 @@
             "name": "WSL Debian",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/memory/fibonacci/include/**",
+                "${workspaceFolder}/memory/kertotaulu/include/**",
                 "/usr/include/**",
                 "/usr/local/include/**"
             ],

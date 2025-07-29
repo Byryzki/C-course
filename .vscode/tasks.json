@@ -7,11 +7,11 @@
             "command": "/usr/bin/gcc",
             "args": [
                 "-g",
-                "${workspaceFolder}/memory/fibonacci/src/main.c",
-                "${workspaceFolder}/memory/fibonacci/src/fibonacci.c",
-                "-I${workspaceFolder}/memory/fibonacci/include",
+                "${workspaceFolder}/memory/kertotaulu/src/main.c",
+                "${workspaceFolder}/memory/kertotaulu/src/kertotaulu.c",
+                "-I${workspaceFolder}/memory/kertotaulu/include",
                 "-o",
-                "${workspaceFolder}/memory/fibonacci/a.out",
+                "${workspaceFolder}/memory/kertotaulu/a.out",
                 "-lm"
             ],
             "group": "build",

@@ -3,7 +3,7 @@
 #include <math.h>
 #include <string.h>
 #include "kertotaulu.h"
-
+/*
 Kertotaulu * luoKertotaulu(uint a, uint b, uint c, uint d)
 {
     Kertotaulu *valmis = malloc(sizeof(Kertotaulu));
@@ -41,7 +41,7 @@ Kertotaulu * luoKertotaulu(uint a, uint b, uint c, uint d)
 
     return valmis;
 }
-
+*/
 char ** luo_kertotaulu_mjt(uint a, uint b, uint c, uint d)
 {
     int i;
@@ -52,7 +52,10 @@ char ** luo_kertotaulu_mjt(uint a, uint b, uint c, uint d)
     int colwidths[maxcol];
     int spots = 0;
     int chars;
-    int product;
+    uint product;
+    int cap;
+    int m;
+    int used;
 
     /*calculate col widths*/
 
@@ -69,33 +72,61 @@ char ** luo_kertotaulu_mjt(uint a, uint b, uint c, uint d)
 
     /*construct the strings*/
 
-    result = malloc(maxrow * sizeof(char));
+    result = malloc(maxrow * sizeof(char *));
     result[maxrow-1] = '\0';
 
     for(i=0; i<maxrow; i++) /*Row wise*/
     {
-        result[i] = malloc(sizeof(char));   /*allocate memory for new row*/
-        result[chars-1] = '\0';
+        cap = 1;
+        used = 1;
 
-        for(j=0; j<chars; j++)  /*col wise*/
+        result[i] = calloc(chars, sizeof(char));   /*allocate fresh memory for new row*/
+        result[i][chars-1] = '\0';
+        
+        for(j=0; j<maxcol; j++)  /*col wise*/
         {
+            product = (a+j-1)*(c+i-1);
+
+            if(i==0 && j!=0){product = a+j-1;}
+            
             if(j==0)
             {
-                result[i] = realloc(result[i], strlen(result[i]) + colwidths[0] * sizeof(char));
-                printf("row length: %zu \n", strlen(result[i]));
-                sprintf(result[i], "%.*s", colwidths[0], ' ');  /*Kopioi Fibonaccin vastaava toteutus ja muokkaa. */
+                if(i==0){m = colwidths[j];}
+                else{
+                    m = colwidths[j] - (int)log10(c+i); product = c+i-1;}
             }
-            else
+            else{
+                m = 1 + colwidths[j] - (int)log10(product);}
+            
+            if(used + m > cap)
             {
-                result[i] = realloc(result[i], 2 * sizeof(char));
-                product = (a + j) * (c + i);
-                sprintf(result[j], " %.*s", colwidths[j], (char)product);
+                while(used + m > cap){cap = 2*cap;} /*more memory*/
+
+                result[i] = realloc(result[i], sizeof(char)*cap);
             }
+
+            if(j==0 && i==0){
+                sprintf(result[i] + strlen(result[i]), "%*.s", colwidths[j], " ");}
+
+            else if(j==0 && i!=0){
+                sprintf(result[i] + strlen(result[i]), "%u", product);}
+
+            else{
+                sprintf(result[i] + strlen(result[i]), "%*u", colwidths[j]+1, product);}
+
+            used = strlen(result[i]);
         }
+        if(cap > used)  /*clean unneeded memory from array*/
+        {
+            result[i] = realloc(result[i], sizeof(char)*(used + 1));
+        }
+
+
     }
 
+    return result;
 }
-
+/*
 void tuhoaKertotaulu(Kertotaulu *kt)
 {
     uint i;
@@ -110,3 +141,4 @@ void tuhoaKertotaulu(Kertotaulu *kt)
     free(kt->kertotaulu);
     free(kt);
 }
+    */

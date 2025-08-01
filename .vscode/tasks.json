@@ -7,11 +7,11 @@
             "command": "/usr/bin/gcc",
             "args": [
                 "-g",
-                "${workspaceFolder}/memory/kertotaulu/src/main.c",
-                "${workspaceFolder}/memory/kertotaulu/src/kertotaulu.c",
-                "-I${workspaceFolder}/memory/kertotaulu/include",
+                "${workspaceFolder}/memory/lista/src/main.c",
+                "${workspaceFolder}/memory/lista/src/lista.c",
+                "-I${workspaceFolder}/memory/lista/include",
                 "-o",
-                "${workspaceFolder}/memory/kertotaulu/a.out",
+                "${workspaceFolder}/memory/lista/a.out",
                 "-lm"
             ],
             "group": "build",

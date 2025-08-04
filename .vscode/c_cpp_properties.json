@@ -4,7 +4,7 @@
             "name": "WSL Debian",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/memory/mjonot/include/**",
+                //"${workspaceFolder}/memory/luvut/include/**",
                 "/usr/include/**",
                 "/usr/local/include/**"
             ],

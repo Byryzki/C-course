@@ -7,11 +7,11 @@
             "command": "/usr/bin/gcc",
             "args": [
                 "-g",
-                "${workspaceFolder}/memory/lista/src/main.c",
-                "${workspaceFolder}/memory/lista/src/lista.c",
-                "-I${workspaceFolder}/memory/lista/include",
+                "${workspaceFolder}/memory/mjonot/src/main.c",
+                "${workspaceFolder}/memory/mjonot/src/mjonot.c",
+                "-I${workspaceFolder}/memory/mjonot/include",
                 "-o",
-                "${workspaceFolder}/memory/lista/a.out",
+                "${workspaceFolder}/memory/mjonot/a.out",
                 "-lm"
             ],
             "group": "build",

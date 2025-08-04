@@ -88,8 +88,6 @@ DblSolmu * dl_lisaa(DblLista *lista, size_t i, double arvo)
     }
 
     u = malloc(sizeof(DblSolmu));   /*empty struct pointer*/
-    old = malloc(sizeof(DblSolmu));   /*empty struct pointer*/
-    old_pre = malloc(sizeof(DblSolmu));   /*empty struct pointer*/
     
     if(lista->n == 0)   /*empty list*/
     {
@@ -170,8 +168,7 @@ double dl_poista(DblLista *lista, size_t i)
     DblSolmu *pre;
     double removed;
 
-    if(i > lista->n || lista->n == 0){
-        return 0;} /*illegal index or list empty*/
+    if(i > lista->n || lista->n == 0){return 0;} /*illegal index or list empty*/
 
     if(lista->paa->seur == NULL)    /*listassa yksi alkio*/
     {

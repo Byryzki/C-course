@@ -7,11 +7,11 @@
             "command": "/usr/bin/gcc",
             "args": [
                 "-g",
-                //"${workspaceFolder}/memory/luvut/src/main.c",
-                "${workspaceFolder}/memory/luvut/src/luvut.c",
-                //"-I${workspaceFolder}/memory/luvut/include",
+                "${workspaceFolder}/memory/luku/src/main.c",
+                "${workspaceFolder}/memory/luku/src/luku.c",
+                "-I${workspaceFolder}/memory/luku/include",
                 "-o",
-                "${workspaceFolder}/memory/luvut/a.out",
+                "${workspaceFolder}/memory/luku/a.out",
                 "-lm"
             ],
             "group": "build",

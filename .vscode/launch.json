@@ -5,12 +5,12 @@
             "name": "WSL Debug with Build",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/memory/luku/a.out", // Updated binary path
+            "program": "${workspaceFolder}/memory/tdtaulu/a.out", // Updated binary path
             "args": [
                 "8", "arvot", "2", "ote.txt"
             ],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/memory/luku",
+            "cwd": "${workspaceFolder}/memory/tdtaulu",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",

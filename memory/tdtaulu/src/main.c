@@ -7,7 +7,7 @@ int main(void)
 {
   const char *nimi = "ote.bin";
   const unsigned int lkm = 3;
-  const unsigned int n = lkm*1; /*muokkaa takaisin 100*/
+  const unsigned int n = lkm*3; /*muokkaa takaisin 100*/
   unsigned int u = 0;
   double *dt = malloc(n*sizeof(double));
   char *dt_tavut = (char *) dt;

@@ -40,9 +40,10 @@ char *int2bin(int luku)
 TdTaulu * luoTdTaulu(unsigned int n, unsigned int alkioKoko, const char *tdNimi)
 {
     int i;
+    int mitta;
     size_t koko;
     TdTaulu *uusitaulu;
-    char *rimpsu;
+    unsigned char nolla;
     size_t written;
 
     uusitaulu = malloc(sizeof(TdTaulu));
@@ -54,42 +55,104 @@ TdTaulu * luoTdTaulu(unsigned int n, unsigned int alkioKoko, const char *tdNimi)
 
     strcpy((char *)uusitaulu->tdNimi, tdNimi);
 
-    uusitaulu->td = fopen(tdNimi, "w+b");
+    uusitaulu->td = fopen(tdNimi, "wb+");
     if(uusitaulu->td == NULL)
     {
         perror("fopen failed");
-        exit(EXIT_FAILURE);  // or handle the error
+        return(NULL);
     }
 
-    rimpsu = int2bin(n);
-    written = fwrite(rimpsu, sizeof(char), strlen(rimpsu), uusitaulu->td);
-    free(rimpsu);
+    written = fwrite(&n, sizeof(unsigned int), 1, uusitaulu->td);
+    if(written != 1)
+    {
+        perror("fwrite failed");
+        return(NULL);
+    }
 
-    rimpsu = int2bin(alkioKoko);
-    written = fwrite(rimpsu, sizeof(char), strlen(rimpsu), uusitaulu->td);
-    free(rimpsu);
+    written = fwrite(&alkioKoko, sizeof(char), 1, uusitaulu->td);
+    if(written != 1)
+    {
+        perror("fwrite failed");
+        return(NULL);
+    }
 
-    for(i=0; i<n*alkioKoko; i++){written = fwrite("00000000", sizeof(char), 8, uusitaulu->td);}
+    nolla = 0;
+    for(i=0; i<n*alkioKoko; i++){written = fwrite(&nolla, sizeof(char), 1, uusitaulu->td);}
+    if(written != 1)
+    {
+        perror("fwrite failed");
+        return(NULL);
+    }
 
     return uusitaulu;
 }
 
 TdTaulu * avaaTdTaulu(const char *tdNimi)
 {
+    int status;
+    size_t koko;
+    TdTaulu *uusitaulu;
+    unsigned int buffer[2];
 
+    uusitaulu = malloc(sizeof(TdTaulu));
+
+    koko = strlen(tdNimi);
+    uusitaulu->tdNimi = malloc(koko*sizeof(char));
+
+    strcpy((char *)uusitaulu->tdNimi, tdNimi);
+
+    uusitaulu->td = fopen(tdNimi, "rb+");
+    if(uusitaulu->td == NULL)
+    {
+        perror("fopen failed");
+        return(NULL);
+    }
+
+    status = fread(buffer, sizeof(unsigned int), 2, uusitaulu->td);
+    if(status != 2)
+    {
+        perror("fread failed");
+        return(NULL);
+    }
+
+    uusitaulu->n = buffer[0];
+    uusitaulu->alkioKoko = buffer[1];
+
+    return uusitaulu;
 }
 
 void vapautaTdTaulu(TdTaulu *tdt)
 {
-
+    fclose(tdt->td);
+    
+    free((char *)tdt->tdNimi);
+    free(tdt);  /*tarviiko vapauttaa muita jäseniä?*/
 }
 
 int tdtLue(TdTaulu *tdt, unsigned int i, unsigned int lkm, void *arvo)
 {
+    int status;
 
+    status = fseek(tdt->td, sizeof(unsigned int) + sizeof(unsigned int) + i*tdt->alkioKoko, SEEK_CUR);
+    if(status != 0){
+        return 1;}
+
+    status = fread(arvo, sizeof(int), lkm*tdt->alkioKoko, tdt->td); /*ylivuoto korruptoi koko tdt?*/
+    if(status != lkm*tdt->alkioKoko){
+        return 1;}
+
+    return 0;
 }
 
 int tdtKirj(TdTaulu *tdt, unsigned int i, unsigned int lkm, const void *arvo)
 {
+    int status;
 
+    status = fseek(tdt->td, sizeof(unsigned int) + sizeof(unsigned int) + i*tdt->alkioKoko, SEEK_CUR);
+    if(status != 0){return 1;}
+
+    status = fwrite(arvo, sizeof(int), lkm*tdt->alkioKoko, tdt->td);
+    if(status != lkm*tdt->alkioKoko){return 1;}
+
+    return 0;
 }

@@ -7,11 +7,11 @@
             "command": "/usr/bin/gcc",
             "args": [
                 "-g",
-                "${workspaceFolder}/memory/tdtaulu/src/main.c",
-                "${workspaceFolder}/memory/tdtaulu/src/tdtaulu.c",
-                "-I${workspaceFolder}/memory/tdtaulu/include",
+                "${workspaceFolder}/jumps/gotokoe/src/main.c",
+                "${workspaceFolder}/jumps/gotokoe/src/gotokoe.c",
+                "-I${workspaceFolder}/jumps/gotokoe/include",
                 "-o",
-                "${workspaceFolder}/memory/tdtaulu/a.out",
+                "${workspaceFolder}/jumps/gotokoe/a.out",
                 "-lm"
             ],
             "group": "build",

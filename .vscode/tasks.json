@@ -7,11 +7,11 @@
             "command": "/usr/bin/gcc",
             "args": [
                 "-g",
-                "${workspaceFolder}/jumps/gotokoe/src/main.c",
-                "${workspaceFolder}/jumps/gotokoe/src/gotokoe.c",
-                "-I${workspaceFolder}/jumps/gotokoe/include",
+                //"${workspaceFolder}/jumps/nykyaika/src/main.c",
+                "${workspaceFolder}/jumps/nykyaika/src/nykyaika.c",
+                //"-I${workspaceFolder}/jumps/nykyaika/include",
                 "-o",
-                "${workspaceFolder}/jumps/gotokoe/a.out",
+                "${workspaceFolder}/jumps/nykyaika/a.out",
                 "-lm"
             ],
             "group": "build",

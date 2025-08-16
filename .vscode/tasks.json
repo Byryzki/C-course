@@ -7,11 +7,11 @@
             "command": "/usr/bin/gcc",
             "args": [
                 "-g",
-                "${workspaceFolder}/jumps/signaalit/src/main.c",
-                "${workspaceFolder}/jumps/signaalit/src/signaalit.c",
-                "-I${workspaceFolder}/jumps/signaalit/include",
+                "${workspaceFolder}/jumps/yhdista/src/main.c",
+                "${workspaceFolder}/jumps/yhdista/src/yhdista.c",
+                "-I${workspaceFolder}/jumps/yhdista/include",
                 "-o",
-                "${workspaceFolder}/jumps/signaalit/a.out",
+                "${workspaceFolder}/jumps/yhdista/a.out",
                 "-lm"
             ],
             "group": "build",

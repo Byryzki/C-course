@@ -3,56 +3,109 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <setjmp.h>
+#include <string.h>
 
-int main(int argc, char *argv)
+jmp_buf paluuTila;
+
+int main(int argc, char **argv)
 {
-    int done;
+    int matched;
     int i;
     int t_i;
     int tmp;
-    char input[20];
+    char *taulukko[10];
+    char input[100];
+
+    int *taulu;
+    char komento[20];
     int a;
     int b;
-    int taulukko[10];
+    int used;
+    int cap;
 
-    done = 0;
+    matched = 1;
+    i = 0;
     t_i = 0;
+    cap = 1;
+    used = 0;
+
+    taulu = malloc(sizeof(int));
 
     signal(SIGFPE, hoidaSIGFPE);
     signal(SIGSEGV, hoidaSIGSEGV);
 
-    while(!done)
+    while(matched != 0)
     {
-        scanf("%s", input);
-        if(input[0] == 'l' && input[5] == ' ')  /*loose test for lisää*/
+        fgets(input, 20, stdin);
+        taulukko[i] = input;
+
+        matched = sscanf(input, "%s %d %d", komento, &a, &b);   /*how many matched from full command*/
+
+        if(!strcmp(komento, "lisää") || !strcmp(komento, "tulosta")){}  /*check if correct input*/
+        else{matched = 0;}
+
+        switch(setjmp(paluuTila))
         {
-            a = input[6];
-            b = input[8];
+            case 0: /*syöterivin käsittely*/
 
-            taulukko[t_i] = a/b;
-            t_i++;
+                switch(matched)
+                {
+                    case 0: /*empty or faulty input*/
+
+                        return 0;
+
+                    case 1: /*print all*/
+                        
+                        printf("%d", taulu[0]);
+                        for(tmp=1; tmp<used; tmp++)
+                        {
+                            printf(" %d", taulu[tmp]);
+                        }
+                        printf("\n");
+
+                        break;
+
+                    case 2: /*print specific result*/
+                        
+                        printf("%d\n", taulu[a]);
+                        break;
+
+                    case 3: /*add division*/
+                        
+                        tmp = a/b;
+
+                        if(used + 1 > cap)
+                        {
+                            cap = 2*cap;
+                            taulu = realloc(taulu, cap);
+                        }
+
+                        taulu[t_i] = tmp;
+
+                        t_i++;
+                        used++;
+
+                        break;
+                }
+
+            case 1: /*SIGFPE*/
+
+                printf("Aiheutui signaali SIGFPE\n");
+                break;
+
+            case 2: /*SIGSEGV*/
+
+                printf("Aiheutui signaali SIGSEGV\n");
+                break;
+
+            default:   /*UNKNOWN signaali*/
+
+                break;
+
         }
-        else if(input[0] == 't' && input[7] == ' ')  /*loose test for tulosta*/
-        {
-            i = input[8];
-
-            prinf("%d", taulukko[i]);
-        }
-        else if(input[0] == 't' && input[7] == 0)  /*loose test for tulosta kaikki*/
-        {
-            tmp = t_i;
-            prinf("%d", taulukko[0]);
-            while(tmp != 0)
-            {
-                prinf(" %d", taulukko[i]);
-                tmp--;
-            }
-
-        }
-
-        if(input[0] == 0){done = 1;}
-
+        i++;
     }
+    free(taulu);
 
     return 0;
 }

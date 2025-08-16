@@ -1,5 +1,6 @@
 #ifndef SIGNAALIT
 #define SIGNAALIT
+
 #include <stdio.h>
 #include <setjmp.h>
 

@@ -2,9 +2,19 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
-#include <math.h>
+#include <stdint.h>
+#include <ctype.h>
 
 #include "tulosta.h"
+
+// helper: check if mj looks like a valid C string
+static int looks_like_string(const char *mj) {
+    if (mj == NULL) return 0;
+
+    // try to check if first byte is printable (heuristic)
+    unsigned char c = (unsigned char) mj[0];
+    return (isprint(c) || c == '\0');
+}
 
 size_t tulosta(FILE *td, const char *mj, ...)
 {
@@ -33,12 +43,18 @@ size_t tulosta(FILE *td, const char *mj, ...)
     while((arg = va_arg(args, const char*)) != NULL)  /*copy args into a structure*/
     {
         taulu[i] = malloc(100*sizeof(char));
+
+        if(!looks_like_string(arg)) /*arg not a const char*/
+        {
+            arg = (int)(intptr_t) arg;
+
+            
+        }   
+
         strcpy(taulu[i], arg);
 
         i++;
     }
-
-    td = freopen("filu.txt", "w", td);
 
     i=0;
     while(taulu[0][i] != '\0')   /*print chars to stdout*/
@@ -48,16 +64,24 @@ size_t tulosta(FILE *td, const char *mj, ...)
 
             switch(c)
             {
-                case '%':
-                    fputc(arg[i], td);
-                    j = j + sizeof(char);
+                default:
+                    fputc(taulu[param][i], td);
+                    j++;
+                    i++;
                     break;
 
-                default:
+                case '\n':
+
+                fputc('\n', td);
+                j++;    
+                return j;
+
+                case '%':
                     switch(c2)
                     {
                         case '%':
                             fputc('%', td);
+                            j++;
                             i++;
 
                             break;
@@ -69,7 +93,7 @@ size_t tulosta(FILE *td, const char *mj, ...)
                                 if((c2/mag) % mag != 0)
                                 {
                                     fputc((c2/mag) % mag, td);
-                                    j = j + sizeof(char);
+                                    j++;
                                 }
                                 mag = mag / 10;
                             }
@@ -84,11 +108,11 @@ size_t tulosta(FILE *td, const char *mj, ...)
                             for(k=0; k < strlen(taulu[param]); k++)
                             {
                                 fputc(taulu[param][k], td);
-                                j = j + sizeof(char);
+                                j++;
                             }
 
                             param++;
-
+                            i++;
                             break;
 
                         case 'c':
@@ -104,7 +128,11 @@ size_t tulosta(FILE *td, const char *mj, ...)
             i++;
         }
 
-    fclose(td);
+    for(i=0; i<5; i++)
+    {
+        free(taulu[i]);
+    }
+    free(taulu);
 
     return j;
 }

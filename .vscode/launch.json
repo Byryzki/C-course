@@ -5,12 +5,12 @@
             "name": "WSL Debug with Build",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/jumps/yhdista/a.out", // Updated binary path
+            "program": "${workspaceFolder}/jumps/tulosta/a.out", // Updated binary path
             "args": [
                 "yksi", "kaksi", "kolme", "neljä", "viisi", "kuusi", "seitsemän", "kahdeksan"
             ],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/jumps/yhdista",
+            "cwd": "${workspaceFolder}/jumps/tulosta",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",

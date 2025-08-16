@@ -4,7 +4,7 @@
             "name": "WSL Debian",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/jumps/yhdista/include/**",
+                "${workspaceFolder}/jumps/tulosta/include/**",
                 "/usr/include/**",
                 "/usr/local/include/**"
             ],

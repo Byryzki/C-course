@@ -12,19 +12,14 @@ size_t tulosta(FILE *td, const char *mj, ...)
 {
     int i;
     size_t j;
-    int param;
-    const char *arg;
     va_list args;
     char c, c2, tmp;
-    int mag;
     int k;
     uintptr_t addr2int;
     char addr2char[100];
-
     char **taulu;
 
     j = 0;
-    param = 1;
 
     va_start(args, mj);
 
@@ -67,14 +62,51 @@ size_t tulosta(FILE *td, const char *mj, ...)
                             k = 0;
 
                             addr2int = (int)(intptr_t)mj;
-                            sprintf(addr2char, "%ld", addr2int);
 
-                            while(addr2char[k] != '\000')
+                            if(((addr2int/10000) % 10) != 0)
                             {
-                                fputc(addr2char[k], td);
+                                addr2char[k] = '0' + ((addr2int/10000) % 10);
+                                addr2char[k+1] = '0'; addr2char[k+2] = '0'; addr2char[k+3] = '0'; addr2char[k+4] = '0';
                                 k++;
                                 j++;
                             }
+
+                            if(((addr2int/1000) % 10) != 0)
+                            {
+                                addr2char[k] = '0' + ((addr2int/1000) % 10);
+                                addr2char[k+1] = '0'; addr2char[k+2] = '0'; addr2char[k+3] = '0';
+                                k++;
+                                j++;
+                            }
+                            else if(k!=0){k++;}
+                            
+                            if(((addr2int/100) % 10) != 0)
+                            {
+                                addr2char[k] = '0' + ((addr2int/100) % 10);
+                                addr2char[k+1] = '0'; addr2char[k+2] = '0';
+                                k++;
+                                j++;
+                            }
+                            else if(k!=0){k++;}
+
+                            if(((addr2int/10) % 10) != 0)
+                            {
+                                addr2char[k] = '0' + ((addr2int/10) % 10);
+                                addr2char[k+1] = '0';
+                                k++;
+                                j++;
+                            }
+                            else if(k!=0){k++;}
+
+                            if((addr2int % 10) != 0)
+                            {
+                                addr2char[k] = '0' + (addr2int % 10);
+                                k++;
+                                j++;
+                            }
+
+                            k=0;
+                            while(addr2char[k] != '\000'){fputc(addr2char[k], td); k++;}
 
                             i++;
                             break;
@@ -106,7 +138,6 @@ size_t tulosta(FILE *td, const char *mj, ...)
                             break;
                     }
             }
-
             i++;
         }
 

@@ -4,17 +4,9 @@
 #include <stdarg.h>
 #include <stdint.h>
 #include <ctype.h>
+#include <signal.h>
 
 #include "tulosta.h"
-
-// helper: check if mj looks like a valid C string
-static int looks_like_string(const char *mj) {
-    if (mj == NULL) return 0;
-
-    // try to check if first byte is printable (heuristic)
-    unsigned char c = (unsigned char) mj[0];
-    return (isprint(c) || c == '\0');
-}
 
 size_t tulosta(FILE *td, const char *mj, ...)
 {
@@ -26,9 +18,10 @@ size_t tulosta(FILE *td, const char *mj, ...)
     char c, c2, tmp;
     int mag;
     int k;
+    uintptr_t addr2int;
+    char addr2char[100];
 
     char **taulu;
-    char *rivi;
 
     j = 0;
     param = 1;
@@ -39,23 +32,6 @@ size_t tulosta(FILE *td, const char *mj, ...)
     taulu[0] = malloc(100*sizeof(char));
     strcpy(taulu[0], mj);
 
-    i=1;
-    while((arg = va_arg(args, const char*)) != NULL)  /*copy args into a structure*/
-    {
-        taulu[i] = malloc(100*sizeof(char));
-
-        if(!looks_like_string(arg)) /*arg not a const char*/
-        {
-            arg = (int)(intptr_t) arg;
-
-            
-        }   
-
-        strcpy(taulu[i], arg);
-
-        i++;
-    }
-
     i=0;
     while(taulu[0][i] != '\0')   /*print chars to stdout*/
         {
@@ -65,16 +41,15 @@ size_t tulosta(FILE *td, const char *mj, ...)
             switch(c)
             {
                 default:
-                    fputc(taulu[param][i], td);
+                    fputc(taulu[0][i], td);
                     j++;
-                    i++;
                     break;
 
                 case '\n':
 
-                fputc('\n', td);
-                j++;    
-                return j;
+                    fputc('\n', td);
+                    j++;    
+                    return j;
 
                 case '%':
                     switch(c2)
@@ -87,40 +62,47 @@ size_t tulosta(FILE *td, const char *mj, ...)
                             break;
 
                         case 'd':
-                            mag = 10000;
-                            for(k = 5; k < 0; k--)
-                            {
-                                if((c2/mag) % mag != 0)
-                                {
-                                    fputc((c2/mag) % mag, td);
-                                    j++;
-                                }
-                                mag = mag / 10;
-                            }
                             
-                            i++;
-                            param++;
+                            mj = va_arg(args, const char *);    /*next arg*/
+                            k = 0;
 
+                            addr2int = (int)(intptr_t)mj;
+                            sprintf(addr2char, "%ld", addr2int);
+
+                            while(addr2char[k] != '\000')
+                            {
+                                fputc(addr2char[k], td);
+                                k++;
+                                j++;
+                            }
+
+                            i++;
                             break;
 
                         case 's':
 
-                            for(k=0; k < strlen(taulu[param]); k++)
+                            mj = va_arg(args, const char *);    /*next arg*/
+
+                            for(k=0; k < strlen(mj); k++)
                             {
-                                fputc(taulu[param][k], td);
+                                fputc(mj[k], td);
                                 j++;
                             }
 
-                            param++;
                             i++;
                             break;
 
                         case 'c':
-                            tmp = taulu[param];
-                            fputc(tmp, td);
 
-                            param++;
+                            mj = va_arg(args, const char *);    /*next arg*/
+                            addr2int = (int)(intptr_t)mj;
 
+                            tmp = (char)addr2int;
+                        
+                            fputc((char)tmp, td);
+
+                            j++;
+                            i++;
                             break;
                     }
             }
@@ -128,6 +110,7 @@ size_t tulosta(FILE *td, const char *mj, ...)
             i++;
         }
 
+    i=0;
     for(i=0; i<5; i++)
     {
         free(taulu[i]);

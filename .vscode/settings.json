@@ -3,6 +3,7 @@
         "geometria.h": "c",
         "cmath": "c",
         "math.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "locale.h": "c"
     }
 }

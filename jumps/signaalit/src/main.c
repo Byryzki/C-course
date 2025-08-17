@@ -13,7 +13,6 @@ int main(int argc, char **argv)
     int i;
     int t_i;
     int tmp;
-    char *taulukko[10];
     char input[100];
 
     int *taulu;
@@ -37,15 +36,17 @@ int main(int argc, char **argv)
     while(matched != 0)
     {
         fgets(input, 20, stdin);
-        taulukko[i] = input;
 
         matched = sscanf(input, "%s %d %d", komento, &a, &b);   /*how many matched from full command*/
 
         if(!strcmp(komento, "lisää") || !strcmp(komento, "tulosta")){}  /*check if correct input*/
         else{matched = 0;}
 
+        if(matched == -1){matched = 0;}
+
         switch(setjmp(paluuTila))
         {
+            
             case 0: /*syöterivin käsittely*/
 
                 switch(matched)
@@ -63,12 +64,13 @@ int main(int argc, char **argv)
                         }
                         printf("\n");
 
-                        break;
+                        longjmp(paluuTila, 3);
 
                     case 2: /*print specific result*/
                         
                         printf("%d\n", taulu[a]);
-                        break;
+                        
+                        longjmp(paluuTila, 3);
 
                     case 3: /*add division*/
                         
@@ -77,7 +79,7 @@ int main(int argc, char **argv)
                         if(used + 1 > cap)
                         {
                             cap = 2*cap;
-                            taulu = realloc(taulu, cap);
+                            taulu = realloc(taulu, cap*sizeof(int));
                         }
 
                         taulu[t_i] = tmp;
@@ -85,17 +87,21 @@ int main(int argc, char **argv)
                         t_i++;
                         used++;
 
-                        break;
+                        longjmp(paluuTila, 3);
                 }
 
-            case 1: /*SIGFPE*/
+            case SIGFPE: /*SIGFPE*/
 
                 printf("Aiheutui signaali SIGFPE\n");
                 break;
 
-            case 2: /*SIGSEGV*/
+            case SIGSEGV: /*SIGSEGV*/
 
                 printf("Aiheutui signaali SIGSEGV\n");
+                break;
+
+            case 3: /*just escape nested switch*/
+                
                 break;
 
             default:   /*UNKNOWN signaali*/

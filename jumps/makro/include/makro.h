@@ -1,34 +1,35 @@
+#ifndef MAKRO
+#define MAKRO
+
 #ifdef OTE_DEBUG
     #include <stdio.h>
 #endif
 
-double PII = 3.141592653589793;
+#define PII "3.141592653589793"
 
-#define MJ(x) (char str[64]\
-     sprintf(str, "\"%f\"", x))
+#define MJ(x) x
 
 #ifndef DESIMAALIT
     #define DESIMAALIT 3
 #endif
 
 #ifndef TYYPPI
-    typedef unsigned char TYYPPI;
+    #define TYYPPI unsigned char
 #endif
 
-#define MIN(a,b) ((a < b) ? a : b)
+#define MIN(a,b) ((a) < (b) ? (a) : (b))
+#define MAX(a,b) ((a) > (b) ? (a) : (b))
 
-#define MAX(a,b) ((a > b) ? a : b)
+#define MIN3(a,b,c) (MIN(MIN((a),(b)),(c)))
+#define MAX3(a,b,c) (MAX(MAX((a),(b)),(c)))
 
-#define MIN3(a,b,c) ((MIN(a,b) < c) ? MIN(a,b) : c)
-
-#define MAX3(a,b,c) ((MAX(a,b) > c) ? MAX(a,b) : c)
-
-#define MIN4(a,b,c,d) ((MIN3(a,b,c) < d) ? MIN3(a,b,c) : d)
-
-#define MAX4(a,b,c,d) ((MAX3(a,b,c) > d) ? MAX3(a,b,c) : d)
+#define MIN4(a,b,c,d) (MIN(MIN3((a),(b),(c)),(d)))
+#define MAX4(a,b,c,d) (MAX(MAX3((a),(b),(c)),(d)))
 
 #ifdef OTE_DEBUG
-    #define debug(msg) (fprintf(stderr, msg))
+    #define debug(msg) fprintf(stderr, msg)
 #else
-    #define debug(msg) ((void)0)
+    #define debug(msg)
+#endif
+
 #endif

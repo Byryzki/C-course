@@ -6,10 +6,10 @@
 
 void hoidaSIGFPE(int s)
 {
-    longjmp(paluuTila, 1);
+    longjmp(paluuTila, SIGFPE);
 }
 
 void hoidaSIGSEGV(int s)
 {
-    longjmp(paluuTila, 2);
+    longjmp(paluuTila, SIGSEGV);
 }

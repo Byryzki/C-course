@@ -3,7 +3,7 @@
 #include "numeroita.h"
 #include "komplementti.h"
 #include "murtofilu.h"
-
+#include <linkki.h>
 
 int main(int argc, char **argv)
 {
@@ -12,6 +12,7 @@ int main(int argc, char **argv)
     char **komps;
     unsigned int num;
     FILE *on;
+    double a;
 
     lukum = argc - 1;
 
@@ -24,11 +25,16 @@ int main(int argc, char **argv)
     free(nums[1]);
     free(nums);
     
+    murtofilu(on, argv[1], argv[2]);
+    
 
     komplementti("1100");
+    
     */
 
-    murtofilu(on, argv[1], argv[2]);
+    a = 0.2;
+    linkki(0.2);
+    
 
     return 0;
 }

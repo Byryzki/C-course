@@ -9,6 +9,10 @@ void komplementti(char *bitit)
     int len;
     char buf[100];
 
+    int joku;
+    char bittina[32];
+    unsigned int mask;
+
     len = 0;
     while(bitit[len] != '\0'){len++;}
     
@@ -39,4 +43,18 @@ void komplementti(char *bitit)
     }
 
     printf("Komplementti: %s\n", buf);
+
+    joku = -5;
+
+    printf("%d:lle ", joku);
+    for(i=0; i<32; i++) /*int:stä binääriesitys nopee*/
+    {
+        mask = 1 << 31-i;
+        bittina[i] = (joku & mask) ? '1' : '0';
+
+        printf("%c", bittina[i]);
+    }
+    printf("\n");
+
+
 }   

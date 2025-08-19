@@ -11,7 +11,7 @@
                 "-pedantic-errors",
                 "-Wall",
                 "${workspaceFolder}/jumps/tenttiluku/src/main.c",
-                "${workspaceFolder}/jumps/tenttiluku/src/murtofilu.c",
+                "${workspaceFolder}/jumps/tenttiluku/src/linkki.c",
                 "-I${workspaceFolder}/jumps/tenttiluku/include",
                 "-o",
                 "${workspaceFolder}/jumps/tenttiluku/a.out",

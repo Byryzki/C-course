@@ -1,5 +1,8 @@
 1.  Luetaan lukuja argc ja niille temppuja ja tulostetaan (tehdään pointer funktio että saadaan merkkilista suoraa ja variadic params)
 2.  64-bittinen rimpsu käännetään 2 komplementiksi
-3.  murtolukutaulu, paddingiä tulosteeseen ja headerfilu jutut
+3.  murtolukutaulu, paddingiä tulosteeseen ja headerfilu jutut, dyn muistinkäsittely
 4.  Tiedostoon kirjoittaminen ja syötteen luku tiedostosta, sanat listaan
 5.  linkitetty lista molempiin suuntiin
+
+lisäksi
+1.  Scanf?
